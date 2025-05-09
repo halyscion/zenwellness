@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZenWellness Mood Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #cceeff;
+    }
+
+    nav {
+      background-color: #2c3e50;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-style: italic;
+      font-family:Georgia, 'Times New Roman', Times, serif;
+
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 50px;
+      align-items: center;
+   
+    }
+
+    .nav-links li {
+      cursor: pointer;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .profile-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 60%;
+      background-color: white;
+      background-size: cover;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .step {
+      background: white;
+      padding: 30px;
+      margin-top: 20px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    .emoji-container span {
+      font-size: 2rem;
+      margin: 12px;
+      cursor: pointer;
+    }
+
+    .emoji-container span.selected {
+      border: 2px solid #555;
+      border-radius: 11px;
+    }
+
+    .container {
+      padding: 30px;
+    }
+    .step { display: none; }
+    .step.active { display: block; }
+    .emoji-container span {
+      font-size: 2rem;
+      margin: 14px;
+      cursor: pointer;
+    }
+
+    h1 {
+      text-align: center;
+      color: #100b3a;
+
+    }
+    label {
+      display: block;
+      margin-top: 32px;
+      font-weight: bold;
+
+    }
+
+    textarea {
+      width: 100%;
+      padding: 100px;
+      margin-top: 100px;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 15px;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: fixed;
+      font-size: 1rem;
+      margin-left: 620px;
+      margin-top: 19px;
+      width: 100px;
+      height: 40px; 
+    }
+
+select, textarea {
+  width: 14%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #2e2d8d;
+  font-size: 1em;
+  text-align: center;
+}
+
+    canvas {
+      margin-top: 40px;
+    }
+
+    
+
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">ZenWellness</div>
+    <ul class="nav-links">
+      <li>Homepage</li>
+      <li>About Us</li>
+      <li>Daily Journal</li>
+      <li>Sleep Information</li>
+      <li>Mood Tracker</li>
+      <li>Contacts</li>
+      <li><img src="https://img.icons8.com/material-outlined/24/ffffff/user.png"/></li>
+
+    </ul>
+  </nav>
+
+ 
+  <div class="container">
+    <!-- Q1 -->
+    <div class="step active" id="step0">
+
+      <div style="display: flex; gap: 20px; align-items: flex-start;"> 
+
+        <p> We would to Track the score of your wellbeing & to Monitor your mood. Let's begin!</p>
+      </div>
+      <p>Are you a Student or Staff?</p>
+
+  
+        <label><input type="radio" name="identity" value="Student"> Student</label>
+  
+        <label><input type="radio" name="identity" value="Staff"> Staff</label><br/>
+
+        <br/>
+
+        <button onclick="nextStep()">Next</button>
+      
+    </div>
+
+
+
+  <!-- Q2 -->
+  <div class="step" id="step1">
+    <p>How are you feeling today?</p>
+
+    <br/>
+
+    <div class="emoji-container" id="emojiMood">
+      <span>😊</span><span>😢</span><span>😠</span><span>😰</span><span>🤩</span><span>😐</span>
+    </div>
+
+    <br/>
+
+    <button onclick="nextStep()">Next</button>
+  </div>
+
+
+    <!-- Q3 -->
+    <div class="step" id="step2">
+      <p>Have you recently felt anxious or stressed?</p>
+
+      <select id="q3">
+        <option value="Low">Not really</option>
+        <option value="Medium">maybe</option>
+        <option value="Medium">Sometimes</option>
+        <option value="High">Very often</option>
+        <option value="High">Yes, all the time</option>
+
+      </select>
+
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+
+      <button onclick="nextStep()">Next</button>
+    </div>
+
+    <!-- Q4 -->
+    <div class="step" id="step3">
+      <p> Do you struggle to fall asleep at night? </p>
+      <select id="q4">
+        <option value="Not at all">Not at all</option>
+        <option value="Not really">Not Really</option>
+        <option value="Sometimes">Sometimes</option>
+        <option value="Yes, all the time"> Yes, all the time</option>
+
+      </select>
+
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+
+      <button onclick="nextStep()">Next</button>
+    </div>
+
+    <!-- Q5 -->
+    <div class="step" id="step4">
+      <p> Do you struggle to maintain a healthy lifetstyle, balanced diet/healthy relationship with food?</p>
+      <select id="q5">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Sometimes">sometimes</option>
+
+      </select>
+
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+
+      <button onclick="nextStep()">Next</button>
+    </div> 
+
+
+        <!-- Q6 -->
+        <div class="step" id="step5">
+          <p>Do you experience any low-enegery levels?</p>
+          <select id="q6">
+            <option value="Not at all">Not at all</option>
+            <option value="Sometimes">Sometimes</option>
+            <option value="Not really">Not really</option>
+            <option value="Quite often">Quite often</option>
+            <option value="Always">Always</option>
+    
+          </select>
+    
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+    
+          <button onclick="nextStep()">Next</button>
+        </div> 
+
+        <!-- Q7 -->
+        <div class="step" id="step6">
+          <p> Do you often lose interest in activities?</p>
+          <select id="q7">
+            <option value="Yes, All the time">Yes, All the time</option>
+            <option value="Not really">Not really</option>
+            <option value="Quite often">Quite often</option>
+            <option value="Sometimes">Sometimes</option>
+
+    
+          </select>
+    
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+    
+          <button onclick="nextStep()">Next</button>
+        </div> 
+
+
+        <!-- Q8 -->
+        <div class="step" id="step7">
+          <p> Are you aware of the current Mental health Resources available to you?</p>
+          <select id="q8">
+            <option value="Yes">Yes, I'm aware</option>
+            <option value="No">No</option>
+            <option value="Not really">Not really</option>
+    
+          </select>
+    
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+    
+          <button onclick="nextStep()">Next</button>
+        </div> 
+
+
+      <!-- Q9 -->
+  <div class="step" id="step8">
+  <p>On a scale of 1-5, how would you rate your mental health?</p>
+  <select id="q9">
+    <option value="1">1 - Very Low</option>
+    <option value="2">2 - Low</option>
+    <option value="3">3 - Neutral</option>
+    <option value="4">4 - Good</option>
+    <option value="5">5 - Excellent</option>
+  </select>
+  <br/><br/><br/><br/>
+  <button onclick="nextStep()">Next</button>
+  </div>
+
+      <!-- Q10 -->
+  <div class="step" id="step9">
+  <p>On a scale of 1-5, How is your Attendance?</p>
+  <select id="q10">
+    <option value="1">1 - Very Poor</option>
+    <option value="2">2 - Poor</option>
+    <option value="3">3 - Average</option>
+    <option value="4">4 - Good</option>
+    <option value="5">5 - Excellent</option>
+  </select>
+  <br/><br/><br/><br/>
+  <button onclick="nextStep()">Next</button>
+  </div>
+
+
+  <!-- Q11 -->
+  <div class="step" id="step10">
+    <p>How has your mental Health been through this week?</p>
+
+    <br/>
+
+    <div class="emoji-container" id="emojiMood">
+      <span>😊</span><span>😢</span><span>😠</span><span>😰</span><span>🤩</span><span>😐</span>
+    </div>
+
+    <br/>
+
+    <button onclick="nextStep()">Next</button>
+  </div>
+
+
+
+  <!-- Q12 -->
+  <div class="step" id="step11">
+    <p> How do you feel when it comes to support, within your family?</p>
+
+    <br/>
+
+    <div class="emoji-container" id="emojiMood">
+      <span>😊</span><span>😢</span><span>😠</span><span>😰</span><span>🤩</span><span>😐</span>
+    </div>
+
+    <br/>
+
+    <button onclick="nextStep()">Next</button>
+  </div>
+
+
+
+  <!-- Q13 -->
+  <div class="step" id="step12">
+    <p> How do you feel when sharing thoughts and opening up to others?</p>
+
+    <br/>
+
+    <div class="emoji-container" id="emojiMood">
+      <span>😊</span><span>😢</span><span>😠</span><span>😰</span><span>🤩</span><span>😐</span>
+    </div>
+
+    <br/>
+
+    <button onclick="nextStep()">Next</button>
+  </div>
+
+
+  <!-- Q14 -->
+  <div class="step" id="step13">
+    <p> Use one emoji, to describe how you feel about ZenWellness and gaining support Mental wellbeing?</p>
+
+    <br/>
+
+    <div class="emoji-container" id="emojiMood">
+      <span>😊</span><span>😢</span><span>😠</span><span>😰</span><span>🤩</span><span>😐</span>
+    </div>
+
+    <br/>
+
+    <button onclick="nextStep()">Next</button>
+  </div>
+
+
+
+    <!-- Q15 -->
+    <div class="step" id="step14">
+      <p>Is there anything you would like to include?</p>
+      
+      <br/>
+      <textarea id="comment" rows="4" cols="50" placeholder="Write here... you can drag the box to expand"></textarea>
+      <button onclick="logMood()">Log Mood</button>
+    </div>
+
+ 
+
+    <!--  Mood_tracker Results -->
+    <div class="step" id="step12">
+      <h3>Your Wellbeing & Mood Analysis shows:</h3>
+      <canvas id="moodPie" width="400" height="400"></canvas>
+    </div>
+  </div>
+
+
+
+<script>
+  let currentStep = 0;
+  const steps = document.querySelectorAll(".step");
+  const emojiContainer = document.getElementById("emojiMood");
+  let moodData = {
+    happy: 0,
+    sad: 0,
+    angry: 0,
+    anxious: 0,
+    excited: 0,
+    neutral: 0
+  };
+  let selectedMood = "";
+
+  function nextStep() {
+    steps[currentStep].classList.remove("active");
+    currentStep++;
+    if (currentStep < steps.length) {
+      steps[currentStep].classList.add("active");
+    }
+  }
+
+  emojiContainer.addEventListener("click", function (e) {
+    if (e.target.tagName === "SPAN") {
+      document.querySelectorAll(".emoji-container span").forEach(el => el.classList.remove("selected"));
+      e.target.classList.add("selected");
+      selectedMood = e.target.textContent;
+    }
+  });
+
+  function logMood() {
+    steps[currentStep].classList.remove("active");
+    currentStep++;
+    steps[currentStep].classList.add("active");
+
+    // Simulate data logging
+    switch (selectedMood) {
+      case "😊": moodData.happy++; break;
+      case "😢": moodData.sad++; break;
+      case "😠": moodData.angry++; break;
+      case "😰": moodData.anxious++; break;
+      case "🤩": moodData.excited++; break;
+      case "😐": moodData.neutral++; break;
+    }
+
+    renderCharts();
+  }
+
+  function renderCharts() {
+    const labels = Object.keys(moodData);
+    const data = Object.values(moodData);
+
+    // Pie Chart
+    new Chart(document.getElementById('moodPie'), {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Mood Distribution',
+          data: data,
+          backgroundColor: ['#f39c12', '#3498db', '#e74c3c', '#9b59b6', '#2ecc71', '#95a5a6']
+        }]
+      }
+    });
+
+    // Bar Chart 1
+    const canvas1 = document.createElement('canvas');
+    canvas1.width = 400;
+    canvas1.height = 400;
+    document.getElementById('step12').appendChild(canvas1);
+    new Chart(canvas1, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Mood Frequency',
+          data: data,
+          backgroundColor: '#2980b9'
+        }]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+
+    // Bar Chart 2 (Horizontal)
+    const canvas2 = document.createElement('canvas');
+    canvas2.width = 400;
+    canvas2.height = 400;
+    document.getElementById('step12').appendChild(canvas2);
+    new Chart(canvas2, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Mood Count (Horizontal)',
+          data: data,
+          backgroundColor: '#27ae60'
+        }]
+      },
+      options: {
+        responsive: false,
+        indexAxis: 'y',
+        scales: {
+          x: { beginAtZero: true }
+        }
+      }
+    });
+  }
+</script>
+
+
+</body>
+</html>

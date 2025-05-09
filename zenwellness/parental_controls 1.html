@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZenWellness | Parental Control Dashboard</title>
+
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f0fff5;
+      margin: 0;
+      padding: 0;
+      color: #2e3c76;
+    }
+
+    header {
+      background-color: #68afd3;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+      nav {
+      background-color: #6e9fd1;
+      color: rgb(253, 241, 241);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-style: italic;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+
+}
+
+.nav-links li {
+  cursor: pointer;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+    nav a {
+      color: #1d417b;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #428dbc;
+    }
+
+    .status {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    button {
+      background-color: #60a4c3;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #87baf1;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ZenWellness Parental Dashboard</h1>
+    <p> Parental Portal Access: To monitor, track, and manage student's wellbeing </p>
+  </header>
+
+  <nav>
+    <a href="#">Dashboard</a>
+    <a href="#">Task Activity</a>
+    <a href="#">Statistics</a>
+    <a href="#">Settings</a>
+    <a href="#">Support</a>
+    <a href="#">Account</a>
+  </nav>
+
+
+<br/>
+<br/>
+<br/>
+    <div class="card">
+      <h3>Recent Mood Logs</h3>
+      <div class="status">
+        <p><strong>Student:</strong>  – Feeling: Stressed – Timeframe: 10 hours ago</p>
+        <p><strong>Student:</strong>  – Feeling: Anxious – Timeframe: 1 days, 2 hours ago</p>
+        <p><strong>Student:</strong>  – Feeling: Nervous – Timeframe: 3 days, 23 hours ago</p>
+        <p><strong>Student:</strong>  – Feeling: Happy – Timeframe: 4 days ago</p>
+
+        <br/>
+
+        <button> Report files</button>
+        
+        <br/>
+      </div>
+    </div>
+
+<br/>
+
+    <div class=" card">
+      <h3>Total amount of screen-time </h3>
+      <div class="status">
+        <p> 3 hrs of screen time used today</p>
+        <p>Device: iPhone 13 pro</p>
+        <p>Most Activity in Apps: Youtube, Fcaebook, Instagram, Snapchat..</p>
+        <button>View Full Report</button>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class=" card">
+      <h3>Attendance</h3>
+      <div class="status">
+        <p>Enagement level, Past 3 weeks: 59% </p>
+        <p>In the past 60 days: 49%</p>
+        <p> Within 3 months: 48%</p>
+        <p>Current Academic year, Overall shows: 64% </p>
+        <button>View Full Report</button>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="card">
+      <h3> Highlight </h3>
+      <div class="status">
+        <p> Alert on: If therapy session needs rebooking. 
+        <p>Notification, Alert: Missed therapy session last week, access the calendar to Reschedule the session.</p>
+</p>
+<button>Book session</button>
+      </div>
+    </div>
+
+    <br/>
+
+    <div class="card">
+      <h3>Parental Controls</h3>
+      <div class="status">
+        <p>- Limit screentime</p>
+        <p>- Schedule wellbeing Activities</p>
+        <p>- Block certain Apps & programs</p>
+        <p>- View Timetable & calendar</p>
+        <p>- Access Academic feedback & Results</p>
+
+        <button>Settings</button>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
